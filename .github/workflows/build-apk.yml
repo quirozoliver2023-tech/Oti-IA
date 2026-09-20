@@ -1,4 +1,4 @@
-name: Compilar Oti IA APK
+name: Compilar Oti IA v0.4 Natural APK
 
 on:
   workflow_dispatch:
@@ -30,19 +30,15 @@ jobs:
         with:
           gradle-version: "8.9"
 
-      - name: Descomprimir Oti IA
-        run: unzip -o OtiIA_Personal_Android_v0.2_APK_READY.zip
-
-      - name: Corregir OtiSpeaker
-        run: |
-          sed -i 's/private final TextToSpeech tts;/private TextToSpeech tts;/' OtiIA_Personal_Android/app/src/main/java/com/azmovil/oti/OtiSpeaker.java
+      - name: Descomprimir Oti IA v0.4
+        run: unzip -o OtiIA_Personal_Android_v0.4_NATURAL.zip
 
       - name: Compilar APK
-        working-directory: OtiIA_Personal_Android
+        working-directory: OtiIA_v0.4_Natural
         run: gradle assembleDebug
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4
         with:
-          name: OtiIA-APK
-          path: OtiIA_Personal_Android/app/build/outputs/apk/debug/app-debug.apk
+          name: OtiIA-v0.4-Natural-APK
+          path: OtiIA_v0.4_Natural/app/build/outputs/apk/debug/app-debug.apk
