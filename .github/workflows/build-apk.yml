@@ -1,4 +1,4 @@
-name: Compilar Oti IA Plus 1.0 Professional APK
+name: Compilar Oti IA Plus 1.0 Play Ready
 
 on:
   workflow_dispatch:
@@ -30,15 +30,17 @@ jobs:
         with:
           gradle-version: "8.9"
 
-      - name: Descomprimir Oti IA Plus 1.0
-        run: unzip -o OtiIA_Plus_1.0_FULL.zip
+      - name: Descomprimir Oti IA Plus Play Ready
+        run: unzip -o OtiIA_Plus_1.0_PLAY_READY.zip
 
-      - name: Compilar APK
-        working-directory: OtiIA_Plus_1.0_FULL
-        run: gradle :app:assembleDebug
+      - name: Compilar APK y AAB
+        working-directory: OtiIA_Plus_1.0_PLAY_READY
+        run: gradle :app:assembleDebug :app:bundleDebug
 
-      - name: Guardar APK
+      - name: Guardar APK y AAB
         uses: actions/upload-artifact@v4
         with:
-          name: OtiIA-Plus-1.0-Professional-APK
-          path: OtiIA_Plus_1.0_FULL/app/build/outputs/apk/debug/app-debug.apk
+          name: OtiIA-Plus-1.0-Play-Ready
+          path: |
+            OtiIA_Plus_1.0_PLAY_READY/app/build/outputs/apk/debug/app-debug.apk
+            OtiIA_Plus_1.0_PLAY_READY/app/build/outputs/bundle/debug/app-debug.aab
