@@ -1,4 +1,4 @@
-name: Compilar Oti IA v0.4 Natural APK
+name: Compilar Oti IA Plus 1.0 Professional APK
 
 on:
   workflow_dispatch:
@@ -30,15 +30,15 @@ jobs:
         with:
           gradle-version: "8.9"
 
-      - name: Descomprimir Oti IA v0.4
-        run: unzip -o OtiIA_Personal_Android_v0.4_NATURAL.zip
+      - name: Descomprimir Oti IA Plus 1.0
+        run: unzip -o OtiIA_Plus_1.0_FULL.zip
 
       - name: Compilar APK
-        working-directory: OtiIA_v0.4_Natural
-        run: gradle assembleDebug
+        working-directory: OtiIA_Plus_1.0_FULL
+        run: gradle :app:assembleDebug
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4
         with:
-          name: OtiIA-v0.4-Natural-APK
-          path: OtiIA_v0.4_Natural/app/build/outputs/apk/debug/app-debug.apk
+          name: OtiIA-Plus-1.0-Professional-APK
+          path: OtiIA_Plus_1.0_FULL/app/build/outputs/apk/debug/app-debug.apk
