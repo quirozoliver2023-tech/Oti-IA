@@ -33,6 +33,10 @@ jobs:
       - name: Descomprimir Oti IA
         run: unzip -o OtiIA_Personal_Android_v0.2_APK_READY.zip
 
+      - name: Corregir OtiSpeaker
+        run: |
+          sed -i 's/private final TextToSpeech tts;/private TextToSpeech tts;/' OtiIA_Personal_Android/app/src/main/java/com/azmovil/oti/OtiSpeaker.java
+
       - name: Compilar APK
         working-directory: OtiIA_Personal_Android
         run: gradle assembleDebug
